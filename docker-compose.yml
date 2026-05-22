@@ -1,0 +1,22 @@
+services:
+  gyds-boostnode:
+    build: .
+    container_name: gyds-boostnode
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "30306:30306"     # P2P TCP
+      - "30306:30306/udp"
+      - "30307:30307"     # Boost relay TCP
+      - "30307:30307/udp"
+    volumes:
+      - boostnode-data:/app/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+volumes:
+  boostnode-data:
