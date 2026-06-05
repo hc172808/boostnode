@@ -419,7 +419,7 @@ build_binary() {
     export PATH=$PATH:/usr/local/go/bin
 
     mkdir -p bin
-    if go build -ldflags="-s -w -X main.version=1.0.0" -o "bin/$BINARY" .; then
+    if go build -buildvcs=false -ldflags="-s -w -X main.version=1.0.0" -o "bin/$BINARY" .; then
         log "Binary built: $APP_DIR/bin/$BINARY"
     else
         die "Build failed. Check Go installation and source code."
