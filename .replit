@@ -22,20 +22,16 @@ args = "Start application"
 name = "Start application"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "GYDS_RPC_PORT=5000 GYDS_RPC_HOST=0.0.0.0 GYDS_LOG_FORMAT=pretty ./bin/gyds-litenode start"
-waitForPort = 5000
-
 [workflows.workflow.metadata]
 outputType = "webview"
 
-[[ports]]
-localPort = 5000
-externalPort = 5000
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "GYDS_RPC_PORT=5000 GYDS_RPC_HOST=0.0.0.0 GYDS_LOG_FORMAT=pretty ./bin/gyds-boostnode start"
+waitForPort = 5000
 
 [[ports]]
-localPort = 30303
+localPort = 5000
 externalPort = 80
 
 [deployment]
