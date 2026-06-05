@@ -1,0 +1,28 @@
+# Environment files — never commit real secrets
+.env
+.env.local
+.env.*.local
+
+# Keep the example
+!.env.example
+
+# Build output
+bin/
+/tmp/
+
+# Go build cache
+*.test
+*.out
+vendor/
+
+# OS / editor
+.DS_Store
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Data directories (created at runtime)
+/data/
+/logs/

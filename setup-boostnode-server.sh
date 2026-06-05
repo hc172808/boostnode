@@ -5,14 +5,14 @@
 #           CentOS/RHEL/Rocky/AlmaLinux 8/9,
 #           Amazon Linux 2/2023, Fedora 38+
 # Usage:    sudo bash setup-boostnode-server.sh
-# Repo:     https://github.com/gydschain/litenode
+# Repo:     https://github.com/hc172808/boostnode
 # ============================================================
 set -Eeuo pipefail
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 APP_USER="gyds"
 APP_DIR="/opt/gyds-boostnode"
-REPO_URL="https://github.com/gydschain/litenode.git"
+REPO_URL="https://github.com/hc172808/boostnode.git"
 BRANCH="main"
 BINARY="gyds-boostnode"
 
