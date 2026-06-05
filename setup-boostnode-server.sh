@@ -351,10 +351,21 @@ setup_repo() {
     step "Setting up repository in $APP_DIR..."
     mkdir -p "$APP_DIR"
 
+    # Disable all git credential prompts — public repo needs no auth
+    export GIT_TERMINAL_PROMPT=0
+    export GIT_ASKPASS=echo
+
+    # Pre-flight: verify the repo is reachable before trying to clone
+    if ! git ls-remote "$REPO_URL" HEAD &>/dev/null; then
+        die "Cannot reach repo: $REPO_URL
+       Make sure the repository is set to PUBLIC on GitHub.
+       Visit: https://github.com/hc172808/boostnode -> Settings -> Change visibility -> Public"
+    fi
+
     if [ ! -d "$APP_DIR/.git" ]; then
-        git clone --branch "$BRANCH" "$REPO_URL" "$APP_DIR"
+        git clone --branch "$BRANCH" --depth 1 "$REPO_URL" "$APP_DIR"
     else
-        git -C "$APP_DIR" config --global safe.directory "$APP_DIR"
+        git config --global safe.directory "$APP_DIR"
         git -C "$APP_DIR" fetch origin
         git -C "$APP_DIR" reset --hard "origin/$BRANCH"
     fi
